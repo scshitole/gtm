@@ -1,0 +1,35 @@
+{
+    "class": "ADC",
+    "schemaVersion": "3.6.0",
+    "id": "GSLB_Sample",
+    "Common": {
+        "class": "Tenant",
+        "Shared": {
+            "class": "Application",
+            "template": "shared",
+            "DC100-Verona": {
+                "class": "GSLB_Data_Center",
+                "contact": "Epic",
+                "location": "Verona100"
+            },
+            "DC100-Verona_LTM": {
+                "class": "GSLB_Server",
+                "dataCenter": {
+                    "use": "DC100-Verona"
+                },
+                "devices": [
+                    {
+                        "address": "100.8.239.233"
+                    }
+                ],
+                "virtualServers": [
+                    {
+                        "address": "100.8.239.230",
+                        "port": 443,
+                        "name": "DC100-HSW-PRD_VS"
+                    }
+                ]
+            }
+        }
+    }
+}

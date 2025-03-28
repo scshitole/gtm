@@ -1,0 +1,53 @@
+{
+    "class": "ADC",
+    "schemaVersion": "3.6.0",
+    "id": "GSLB_Sample",
+    "Epic_GSLB": {
+        "class": "Tenant",
+        "Application": {
+            "class": "Application",
+            "HSW-PRD_GSLB100": {
+               "class": "GSLB_Pool",
+                "enabled": true,
+                "lbModePreferred": "topology",
+                "lbModeAlternate": "topology",
+                "manualResumeEnabled": true,
+                "verifyMemberEnabled": true,
+                "qosHitRatio": 10,
+                "qosHops": 11,
+                "qosKbps": 8,
+                "qosLinkCapacity": 35,
+                "qosPacketRate": 5,
+                "qosRoundTripTime": 75,
+                "qosTopology": 3,
+                "qosVirtualServerCapacity": 2,
+                "qosVirtualServerScore": 1,
+                "members": [
+                    {
+                        "ratio": 1,
+                        "server": {
+                            "use": "/Common/Shared/DC100-Verona_LTM"
+                        },
+                        "virtualServer": "DC100-HSW-PRD_VS"
+                    }
+                ],
+                "maxAnswersReturned": 1,
+                "monitors": [
+                    {
+                        "bigip": "/Common/http"
+                    }
+                ],
+                "resourceRecordType": "A"
+            },
+            "HSW-PRD-GSLB100.pcts.epic.com": {
+                "class": "GSLB_Domain",
+                "domainName": "HSW-PRD-GSLB100.pcts.epic.com",
+                "resourceRecordType": "A",
+                "poolLbMode": "topology",
+                "pools": [
+                    { "use": "HSW-PRD_GSLB100" }
+                ]
+            }
+        }
+    }
+}
